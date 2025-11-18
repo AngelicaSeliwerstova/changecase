@@ -1,3 +1,4 @@
+[![C/C++ CI](https://github.com/AngelicaSeliwerstova/changecase/actions/workflows/autotest.yml/badge.svg)](https://github.com/AngelicaSeliwerstova/changecase/actions/workflows/autotest.yml)
 # changecase
 #Конвертер регистров
 конвертер регистров позволяет менять:
