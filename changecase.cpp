@@ -1,37 +1,55 @@
 #include "changecase.h"
-void toggle_case(std::ifstream & inFile, std::ofstream & outFile) {    
+void toggle_case(std::ifstream& inFile, std::ofstream& outFile) {
     int ch;
-    while ((ch = inFile.get()) != EOF) {      
+    while ((ch = inFile.get()) != EOF) {
         if (ch >= 'a' && ch <= 'z') {
-            ch = (ch - 'a') + 'A'; 
+            ch = (ch - 'a') + 'A';
         }
         else if (ch >= 'A' && ch <= 'Z') {
             ch = (ch - 'A') + 'a';
         }
-        outFile.put(ch); 
+        outFile.put(ch);
     }
 }
 
-void to_lower_case(std::ifstream& inFile, std::ofstream& outFile) {    
+void to_lower_case(std::ifstream& inFile, std::ofstream& outFile) {
     int ch;
-    while ((ch = inFile.get()) != EOF) {     
+    while ((ch = inFile.get()) != EOF) {
         if (ch >= 'A' && ch <= 'Z') {
             ch = (ch - 'A') + 'a';
         }
-        outFile.put(ch); 
+        outFile.put(ch);
     }
 }
 
-void to_upper_case(std::ifstream& inFile, std::ofstream& outFile) {   
+void to_upper_case(std::ifstream& inFile, std::ofstream& outFile) {
     int ch;
-    while ((ch = inFile.get()) != EOF) {     
+    while ((ch = inFile.get()) != EOF) {
         if (ch >= 'a' && ch <= 'z') {
-            ch = (ch - 'a') + 'A';  
+            ch = (ch - 'a') + 'A';
         }
-        outFile.put(ch); 
+        outFile.put(ch);
     }
 }
+void random_case(std::ifstream& inFile, std::ofstream& outFile) {
+    int ch;
+	std::srand(std::time(0));
+    while ((ch = inFile.get()) != EOF) {
+        if (rand() % 2 == 0) {
+            if (ch >= 'a' && ch <= 'z') {
+                ch = (ch - 'a') + 'A';
+            }
+        }
+        else {
 
+            if (ch >= 'A' && ch <= 'Z') {
+                ch = (ch - 'A') + 'a';
+
+
+            }
+        }
+    }
+}
 bool is_delim(int tmp) {
     if (tmp == '\n' || tmp == 9000 || tmp == '\t' || tmp == '\r' || tmp == ' ') {
         return true;
@@ -39,11 +57,11 @@ bool is_delim(int tmp) {
     return false;
 }
 
-void title_case(std::ifstream& inFile, std::ofstream& outFile) { 
-    enum class States {outside, inside};
+void title_case(std::ifstream& inFile, std::ofstream& outFile) {
+    enum class States { outside, inside };
     int ch;
     States state = States::outside;
-    while ((ch = inFile.get()) != EOF) {      
+    while ((ch = inFile.get()) != EOF) {
         if (state == States::outside) {
             if (!is_delim(ch)) {
                 if (ch >= 'a' && ch <= 'z') {

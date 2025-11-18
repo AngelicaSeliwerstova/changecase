@@ -2,12 +2,14 @@
 #include <fstream>
 #include <cstring>
 #include "changecase.h"
-
+#include <ctime>
+#include <cstdlib>
 void help() {
     std::cout << "Use \n\tchangecase -key source destination_file\n";
     std::cout << "  -L \t - to lower case \n";
     std::cout << "  -U \t - to upper case \n";
     std::cout << "  -G \t - toggle case \n";
+    std::cout << "-R \t-random case \n";
 }
 
 
@@ -20,8 +22,8 @@ int main(int argc, char* argv[])
     const char* inputfilename = argv[2];
     const char* outputfilename = argv[3];
 
-    std::ifstream inFile; 
-    inFile.open(inputfilename, std::ios_base::binary);   
+    std::ifstream inFile;
+    inFile.open(inputfilename, std::ios_base::binary);
     if (!inFile) {
         std::cout << "Can not open file '" << inputfilename << "'\n";
         return 1;
@@ -33,9 +35,9 @@ int main(int argc, char* argv[])
         std::cout << "Can not open file '" << outputfilename << "'\n";
         inFile.close();
         return 2;
-    } 
+    }
 
-    if (strcmp(argv[1], "-L") == 0) {     
+    if (strcmp(argv[1], "-L") == 0) {
         to_lower_case(inFile, outFile);
     }
     else if (strcmp(argv[1], "-U") == 0) {
@@ -47,11 +49,14 @@ int main(int argc, char* argv[])
     else if (strcmp(argv[1], "-T") == 0) {
         title_case(inFile, outFile);
     }
+    else if (strcmp(argv[1], "-R") == 0) {
+        title_case(inFile, outFile);
+    }
     else {
         help();
     }
 
-    inFile.close(); 
-    outFile.close(); 
+    inFile.close();
+    outFile.close();
     return 0;
 }
