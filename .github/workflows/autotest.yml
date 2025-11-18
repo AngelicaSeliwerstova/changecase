@@ -16,5 +16,8 @@ jobs:
     - name: Build
       run: g++ main.cpp change_case.cpp -o change_case
     - name: test
-      run: ./test.sh
+      run: |
+           chmodu+x test.sh |
+           ./test.sh
+      
    
