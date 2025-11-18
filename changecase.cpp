@@ -1,4 +1,4 @@
-#include "change_case.h"
+#include "changecase.h"
 void toggle_case(std::ifstream & inFile, std::ofstream & outFile) {    
     int ch;
     while ((ch = inFile.get()) != EOF) {      
